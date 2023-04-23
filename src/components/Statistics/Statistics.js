@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-
+import { StatisticsText } from './Statistics.styled';
 export const Statistics = ({
   options,
   statistic,
@@ -10,28 +10,29 @@ export const Statistics = ({
     <>
       {options.map((name, i) => {
         return (
-          <p key={i}>
-            {name}:<span>{statistic[name]}</span>
-          </p>
+          <StatisticsText key={i}>
+            {name}: <span>{statistic[name]}</span>
+          </StatisticsText>
         );
       })}
-      <p>
+      <StatisticsText>
         Total: <span>{total}</span>
-      </p>
-      <p>
+      </StatisticsText>
+      <StatisticsText>
         Positive feedback: <span>{positivePercentage()}</span>%
-      </p>
+      </StatisticsText>
     </>
   );
 };
 
 Statistics.propTypes = {
-    options: PropTypes.arrayOf(PropTypes.oneOf(['good', 'neutral', 'bad'])).isRequired,
-    statistic: PropTypes.shape({
-        good: PropTypes.number.isRequired,
-        neutral: PropTypes.number.isRequired,
-        bad: PropTypes.number.isRequired,
-    }).isRequired,
-    total: PropTypes.number.isRequired,
-    positivePercentage: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(PropTypes.oneOf(['good', 'neutral', 'bad']))
+    .isRequired,
+  statistic: PropTypes.shape({
+    good: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
+  }).isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.func.isRequired,
 };
